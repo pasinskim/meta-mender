@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Mender demo showing an mp4 video
+Exec=/usr/bin/gst-play  /etc/mender-unlocked.mp4
+Terminal=false
+Type=Application
+X-GNOME-Autostart-Phase=Applications
+
