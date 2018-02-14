@@ -1,0 +1,55 @@
+From 0786340eed49cabfd47de69825f27576c3b99b84 Mon Sep 17 00:00:00 2001
+From: Marcin Pasinski <marcin.pasinski@northern.tech>
+Date: Thu, 8 Feb 2018 12:04:28 +0100
+Subject: [PATCH] Enable capacitive touch display on Colibri iMX7 board.
+
+Signed-off-by: Marcin Pasinski <marcin.pasinski@northern.tech>
+---
+ arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
+
+diff --git a/arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi b/arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi
+index 9070901b6a0e..00e3fa01c18b 100644
+--- a/arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi
++++ b/arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi
+@@ -153,10 +153,11 @@
+ 	/* Atmel maxtouch controller */
+ 	atmel_mxt_ts: atmel_mxt_ts@4a {
+ 		compatible = "atmel,maxtouch";
++                pinctrl-0 = <&pinctrl_gpiotouch>;
+ 		reg = <0x4a>;
+-		interrupt-parent = <&gpio2>;
+-		interrupts = <15 IRQ_TYPE_EDGE_FALLING>;
+-		status = "disabled";
++                interrupt-parent = <&gpio1>;
++                interrupts = <9 IRQ_TYPE_EDGE_FALLING>;
++                status = "okay";
+ 	};
+ 
+ 	touch: touchrevf0710a@10 {
+@@ -302,11 +303,11 @@
+ };
+ 
+ &pwm2 {
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ &pwm3 {
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ &pwm4 {
+@@ -364,7 +365,7 @@
+ 	pinctrl_gpiotouch: touchgpios {
+ 		fsl,pins = <
+ 			MX7D_PAD_GPIO1_IO09__GPIO1_IO9		0x74
+-			MX7D_PAD_GPIO1_IO10__GPIO1_IO10		0x14
++			MX7D_PAD_GPIO1_IO10__GPIO1_IO10		0x74
+ 		>;
+ 	};
+ };
+-- 
+2.14.1
+
